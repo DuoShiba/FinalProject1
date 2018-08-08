@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TextResultActivity">
+    <ScrollView android:id="@+id/contencrollView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/active"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:fadeScrollbars="false"
+            android:maxEms="30"
+            android:maxLines="10"
+            android:ellipsize="end"
+            android:text="經貿一路 寵物健康照護知識區\n健康照護小教室\n寵物按摩體驗區\n寵物居家照護體驗區\n纹菲莎普樂菓\n衡慕雪图巧客範美\n寵物健康!\nare make so 精工\n李國微笑拍拍度\namong 時擊\n護知識區 愛兔區 格子西 巷察力克慈愛 犬髖關節 小茜貓砂 照 135 。 AIG TIAL L1514 [135 1984 | | 國 | | 1314 峰揚 1318 (13g J1238x1302 (k1316 325 愛兔區 « D2071 11311 LE 130G 「107 1989 11311 萌洲球谱宣度進兒 主 澳 Shel 運算著或浪動物之家 最源貝斯國初木 國蘭蘭 颐和 感欣團,利凱訟筷。 動物芸 | 海朔」 圈層黨關愛賣 lars 群天 台灣船記泳食鮮道 J30) TRAIN 期中 新邦推动区合海洋合 安格寬達立 121) 2018 12 10 ISIS • 愛兔教育園區 •愛心認養 •愛兔運動會 ·天竺鼠/倉鼠活動 •愛心義診 ‧網紅插畫家見面會 「 [11216. 11200 愛寵「喵屋」「Meow 愛寵」喵屋 狗狗笑了 驚范特西亞 ISIS | cg力生活節 K1200 宜輝 波浪短途會 狗腳印 C1116 | J1200 ||| |||| RIL 1205 师三层童暖通。 TPUT BL 防虐協會 |鲸联 DOGGY WILLIE 11月08 和電商 || 125 [1271129 1 0 二 瑞可立sset 建聲凡爱唯利美第斯普尼克 層工坊宏盟查结osau 澳新美」電法」班尼菲 沛德奧 白皇 星人星级護顯易突; 后续维肯威视漢尼商 志飛 1018 J15 愛犬星樂園 MEOW力生活節 2011 J1125 中華营 保護協會明那 本農 凱麒劉法娃 - Life app 米昂 元樂 | 金哲,柏揚 瘋狂爪子 自然食 犬敏舒「國際 L1101 拉布拉多流 毛寧 | 淞運泰「雞 | 102 S1010_ 格 下上 |	一柏掲 茂捷 | 100 11010 金牌 J1010 J1012 J1016 (JJGos I1018 1026 新爱猫完 • 貓認養區 貓沙龍 ・MEOW市集 •尋寶大作戰 • 愛寵健診站 •行為學堂 •狗狗認養區 實天然 魏大夫 維多麗 美國 冰立狗日子 派斯 威特 1925 德國竣寶 | 柏克| 台灣 「逗奇台灣泰基 1906 中的 沛緹雅 沅慶 沅豐 台灣 寵物 雍立 昱碩 美士寵物 食品 松剛 原野 「優越 | 紐崔斯 1818 健聖 1800 [816 度等进 1808 宅配寄物 (1826 J800 J399 K808 K800 K816 . Pd寵物通 10 • 宅配服務 •寄物服務 ppark 柏希 菲克 菲笔|福壽|雀巢 || 艾斯克 | 艾斯克 福壽 公展昭台北寵物用品展 平面圖 韋民 韋民 「蘇菲亞 阿曼特 豪翼 愛肯拿 5616 南港路一段 寵物王國 耀月 | 1608 | 616 J602 J618 E606 節。」 Jos | A日之 | 1607 0 1611 | 1613 | Eason is frical MNC Hera WOW | 1508 1510 THE 1514] 「圓」阿曼特 翼比」。 - 源富」 竣百尊曼宏寶 FARMINA 法米納-寵物廚房 516 S7 EQ尊爵 醫院子 | Daisuki MInDup 南宏 | 忠杉 多樂米廚房 OPPO 健綠/西莎國際宏適旺事如意變傳厂 In Sheba 百嬌客百衛生距拍留翼比 | 信元 流浪兔舍 Wooly wood 皇」 | 1580B 516 | 526 高揚郎毛孩鮮食關徐仁珍 F207 | AM 53 「錯」 K9洗毛精 注福的家 鎧 寵物谷汪喵星球 [1424 156 串尼爾 @ 臺灣動 新銳」 動能 毛起來洗 臺灣動藥 台灣情 - 台灣惜時光能淨 泰鎖 源富 || ACE (416 點心 J404 1403 「J-18 1428 3402 B406 416 I400 J400 K400 樂淘星惠伽W緯 口口口口口 | 恒美 自然邏輯 忘 物料商品 期指商品 超商品 国外國制卡跟将 強普 台灣 龍馬躍 AFU 東盈 水魔素 貝貝嗑 酷酷貓喵 鮪魚肚 | 1308 麥可 聯合東方 欧利杰 水噹噹 [ime!臭味滾 J301-1 1307-1 2307-1 | APS-1 E- 当事人双接合的路的含的路活却户感 寵物 豪 多格漫 四隻腳 巴尼 悠遊 三怡 Goo Toe 關鍵時刻 每朝活力 古莹餐盒 活力零 光攝狗狗 緻 拍 「黃金巴頓 博客 沛特 卡 回80+ 心M層沟通 行李寄放室 艾富鮮 Deeries Vistice Registration Counter 督導室 1108 I100 116 .202 J100 1118 J134 K100 K116 寵物通 男女關 楚 响所,满满用品領取處 宅配寄物致病 線上搶票 區 首遭J區 預售票 入口 K區 + 區 「藝」 HHHHHHHHHHAT 家族 號召令 @ mm minal be os ) ATM 經貿二路 metro 捷運 南港展覽館站 (30) 重重重重重重重"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="2dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="More"
+            android:textSize="8dp"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Original Picture"
+                        android:gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="380dp"
+                        android:layout_height="300dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:text="Taipei Nangang Exhibition Center" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton"
+                        android:layout_width="380dp"
+                        android:layout_height="300dp"
+                        app:srcCompat="@drawable/national" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_height="40dp"
+                        android:layout_width="match_parent"
+                        android:text="台北世貿中心" />
+
+                    <ImageButton
+                        android:id="@+id/imageButton2"
+                        android:layout_width="380dp"
+                        android:layout_height="300dp"
+                        app:srcCompat="@drawable/taipei" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="380dp"
+                android:layout_height="300dp" />
+        </TableLayout>
+
+
+    </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

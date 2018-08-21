@@ -39,7 +39,6 @@ public class Main extends AppCompatActivity {
             startActivity(intent);
         }
         Intent intent;
-
     };
     private View.OnClickListener C = new View.OnClickListener() {
         Uri outputFileUri;

@@ -25,9 +25,10 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         camera =(ImageButton)findViewById(R.id.camera);
         picture =(ImageButton)findViewById(R.id.picture);
-        testmaps=(Button)findViewById(R.id.button) ;
+        testmaps=(Button)findViewById(R.id.button2) ;
         camera.setOnClickListener(C);
         picture.setOnClickListener(P);
+        testmaps.setOnClickListener(M);
     }
     private View.OnClickListener P = new View.OnClickListener() {
 
@@ -47,6 +48,18 @@ public class Main extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setClass(Main.this,TextResultActivity.class);
             startActivityForResult(intent,2);
+        }
+        Intent intent;
+
+    };
+
+    private View.OnClickListener M = new View.OnClickListener() {
+        Uri outputFileUri;
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            intent.setClass(Main.this,MapResultActivity.class);
+            startActivityForResult(intent,3);
         }
         Intent intent;
 

@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.util.Random;
 
 public class Main extends AppCompatActivity {
     ImageButton camera;
@@ -26,9 +27,9 @@ public class Main extends AppCompatActivity {
         camera =(ImageButton)findViewById(R.id.camera);
         picture =(ImageButton)findViewById(R.id.picture);
         testmaps=(Button)findViewById(R.id.button2) ;
-        camera.setOnClickListener(C);
-        picture.setOnClickListener(P);
-        testmaps.setOnClickListener(M);
+        camera.setOnClickListener(Random);
+        picture.setOnClickListener(Random);
+        testmaps.setOnClickListener(Random);
     }
     private View.OnClickListener P = new View.OnClickListener() {
 
@@ -38,7 +39,6 @@ public class Main extends AppCompatActivity {
             intent.setClass(Main.this,ResultActivity.class);
             startActivity(intent);
         }
-        Intent intent;
     };
     private View.OnClickListener C = new View.OnClickListener() {
         Uri outputFileUri;
@@ -48,7 +48,6 @@ public class Main extends AppCompatActivity {
             intent.setClass(Main.this,TextResultActivity.class);
             startActivityForResult(intent,2);
         }
-        Intent intent;
 
     };
 
@@ -60,7 +59,33 @@ public class Main extends AppCompatActivity {
             intent.setClass(Main.this,MapResultActivity.class);
             startActivityForResult(intent,3);
         }
-        Intent intent;
+
+    };
+
+    private View.OnClickListener Random = new View.OnClickListener() {
+        Uri outputFileUri;
+        java.util.Random ran = new Random();
+        int num=0;
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent();
+            num=(ran.nextInt(3))+1;
+            System.out.println(num);
+            if(num==0)
+            {
+                System.out.println("ERROR");
+            }
+            else if(num==1) {
+                intent.setClass(Main.this,ResultActivity.class);
+            }
+            else if(num==2) {
+                intent.setClass(Main.this,TextResultActivity.class);
+            }
+            else if(num==3) {
+                intent.setClass(Main.this, MapResultActivity.class);
+            }
+            startActivityForResult(intent,4);
+        }
 
     };
 

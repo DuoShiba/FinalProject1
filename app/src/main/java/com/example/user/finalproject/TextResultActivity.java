@@ -19,26 +19,37 @@ public class TextResultActivity extends AppCompatActivity {
     int GET_FROM_CAMERA=1;
     int GET_FROM_PICTURE=2;
     ImageView Original;
-    Button alltext;
+    Button alltext,Refresh;
     ImageView Img1,Img2;
     AlertDialog.Builder adb;
+    String values=new String();
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //t1.setMovementMethod(ScrollingMovementMethod.getInstance());
-        Intent Iintent = new Intent();
+       /* Intent Iintent = new Intent();
         Iintent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(Iintent,2);
-
+        startActivityForResult(Iintent,2);*/
+        Intent intent =getIntent();
+        values=intent.getStringExtra("json");
         adb=new AlertDialog.Builder(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_result);
         alltext =(Button)findViewById(R.id.button);
-        alltext.setOnClickListener(S);
+        Refresh=(Button)findViewById(R.id.button2);
         Img1=(ImageView)findViewById(R.id.imageButton);
         Img2=(ImageView)findViewById(R.id.imageButton2);
         Original=(ImageView)findViewById(R.id.imageView1);
+        tv=(TextView)findViewById(R.id.active);
+
+
         Img1.setOnClickListener(I1);
         Img2.setOnClickListener(I1);
+        alltext.setOnClickListener(S);
+        Refresh.setOnClickListener(I2);
+        tv.setText(values);
+//        tv.setText("dsadasdads");
+
     }
     private View.OnClickListener S = new View.OnClickListener() {
 
@@ -71,6 +82,7 @@ public class TextResultActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+                refresh();
 
         }
         Intent intent;
@@ -97,6 +109,11 @@ public class TextResultActivity extends AppCompatActivity {
     {
 
         super.onResume();
+
+    }
+    public void refresh() {
+
+        onCreate(null);
 
     }
 }

@@ -5,16 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShowText">
-
+    <ScrollView android:id="@+id/contencrollView"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/Q23321"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="寵物展" />
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:singleLine="false"
+            android:fadeScrollbars="false"
+            android:maxEms="30"
+            android:ellipsize="end" />
     </LinearLayout>
+    </ScrollView>
+
 </android.support.constraint.ConstraintLayout>

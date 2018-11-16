@@ -19,11 +19,6 @@
             tools:layout_editor_absoluteX="-1dp"
             tools:layout_editor_absoluteY="6dp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="maptest" />
 
         <ImageButton
             android:id="@+id/camera"

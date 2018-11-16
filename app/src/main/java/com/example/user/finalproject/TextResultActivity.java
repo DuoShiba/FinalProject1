@@ -23,30 +23,32 @@ public class TextResultActivity extends AppCompatActivity {
     ImageView Img1,Img2;
     AlertDialog.Builder adb;
     String values=new String();
+    Intent send=new Intent();
     TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         //t1.setMovementMethod(ScrollingMovementMethod.getInstance());
        /* Intent Iintent = new Intent();
         Iintent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(Iintent,2);*/
-        Intent intent =getIntent();
-        values=intent.getStringExtra("json");
+        send=getIntent();
+        values=send.getStringExtra("json");
+        send.putExtra("showtext",values);
         adb=new AlertDialog.Builder(this);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_text_result);
         alltext =(Button)findViewById(R.id.button);
-        Refresh=(Button)findViewById(R.id.button2);
+//        Refresh=(Button)findViewById(R.id.button2);
         Img1=(ImageView)findViewById(R.id.imageButton);
         Img2=(ImageView)findViewById(R.id.imageButton2);
-        Original=(ImageView)findViewById(R.id.imageView1);
+//        Original=(ImageView)findViewById(R.id.imageView1);
         tv=(TextView)findViewById(R.id.active);
 
 
         Img1.setOnClickListener(I1);
         Img2.setOnClickListener(I1);
         alltext.setOnClickListener(S);
-        Refresh.setOnClickListener(I2);
+//        Refresh.setOnClickListener(I2);
         tv.setText(values);
 //        tv.setText("dsadasdads");
 
@@ -55,9 +57,9 @@ public class TextResultActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(TextResultActivity.this,ShowText.class);
-            startActivity(intent);
+//            Intent intent = new Intent();
+            send.setClass(TextResultActivity.this,ShowText.class);
+            startActivity(send);
         }
         Intent intent;
 
@@ -82,7 +84,7 @@ public class TextResultActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-                refresh();
+            refresh();
 
         }
         Intent intent;
@@ -90,19 +92,12 @@ public class TextResultActivity extends AppCompatActivity {
     };
     private String DataGetter (int input)
     {
-      return "This is not finish yet";
+        return "This is not finish yet";
     };
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent intent)
     {
-//        if(requestCode==2) {
-            super.onActivityResult(requestCode, resultCode, intent);
 
-            if (intent == null) return;
-            Bitmap bm = (Bitmap) intent.getExtras().get("data");
-            Original.setImageBitmap(bm);
-
-//        }
     }
     @Override
     protected void onResume()

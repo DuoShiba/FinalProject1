@@ -16,7 +16,7 @@ public class ShowText extends AppCompatActivity {
         setContentView( R.layout.activity_show_text);
         Intent intent =getIntent();
         alltext=intent.getStringExtra("showtext");
-        System.out.println(alltext);
+//        System.out.println(alltext);
         T1=(TextView)findViewById(R.id.Q23321);
         T1.setText(alltext);
     }

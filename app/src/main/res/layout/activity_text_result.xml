@@ -59,13 +59,21 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:text="Taipei Nangang Exhibition Center" />
+                        android:text="Taipei Nangang Exhibition Center"
+                        android:id="@+id/title1"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:text="Taipei Nangang Exhibition Center"
+                        android:maxLines="5"
+                        android:id="@+id/snippet1"/>
 
                     <ImageButton
                         android:id="@+id/imageButton"
                         android:layout_width="380dp"
                         android:layout_height="300dp"
-                        app:srcCompat="@drawable/national" />
+                        app:srcCompat="@drawable/shibainu1" />
 
                 </LinearLayout>
 
@@ -81,13 +89,21 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
-                        android:text="台北世貿中心" />
+                        android:text="台北世貿中心"
+                        android:id="@+id/title2"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="80dp"
+                        android:text="Taipei Nangang Exhibition Center"
+                        android:maxLines="5"
+                        android:id="@+id/snippet2"/>
 
                     <ImageButton
                         android:id="@+id/imageButton2"
                         android:layout_width="380dp"
                         android:layout_height="300dp"
-                        app:srcCompat="@drawable/taipei" />
+                        app:srcCompat="@drawable/shibainu2" />
                 </LinearLayout>
 
             </TableRow>

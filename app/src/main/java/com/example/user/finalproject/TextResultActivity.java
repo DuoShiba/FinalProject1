@@ -121,19 +121,19 @@ public class TextResultActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            adb.setMessage(DataGetter(R.drawable.camera));
+            Intent intents1=new Intent();
+            intents1.setAction(Intent.ACTION_VIEW);
+            intents1.setData(Uri.parse(l2));
+            startActivity(intents1);
+/*         adb.setMessage(DataGetter(R.drawable.camera));
             adb.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    Intent intents1=new Intent();
-                    intents1.setAction(Intent.ACTION_VIEW);
-                    intents1.setData(Uri.parse(l2));
-                    startActivity(intents1);
+
                 }
             });
-            adb.show();
+            adb.show();*/
         }
-        Intent intent;
 
     };
 

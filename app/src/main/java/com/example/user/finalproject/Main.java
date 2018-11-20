@@ -4,13 +4,17 @@ import android.app.ProgressDialog;
 import android.app.VoiceInteractor;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.icu.util.TimeUnit;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -18,11 +22,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Random;
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -44,8 +54,9 @@ public class Main extends AppCompatActivity {
         int GET_FROM_PICTURE=2;
         int Rcode=-1;
         int nextResult=0;
-        Bitmap bitmap;
+        Bitmap bitmap ;
         Bundle bundle=new Bundle();
+//        ImageView testIV;
 
         String URLV ="https://graduation-107.appspot.com/vision";
         String URLS ="https://graduation-107.appspot.com/search";
@@ -74,6 +85,7 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         camera =(ImageButton)findViewById(R.id.camera);
         picture =(ImageButton)findViewById(R.id.picture);
+//        testIV = (ImageView)findViewById(R.id.imageView) ;
 //        testmaps=(Button)findViewById(R.id.button2) ;
         camera.setOnClickListener(C);
         picture.setOnClickListener(P);
@@ -89,9 +101,7 @@ public class Main extends AppCompatActivity {
             Intent intent = new Intent();
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_PICK);
-            startActivityForResult(Intent.createChooser(intent, "Select Image"), GET_FROM_PICTURE);
-          /* intent.setClass(Main.this,ResultActivity.class);
-           startActivity(intent);*/
+            startActivityForResult(Intent.createChooser(intent, "Select Image"),GET_FROM_PICTURE);
 
         }
     };
@@ -107,19 +117,9 @@ public class Main extends AppCompatActivity {
 
     };
 
-    private View.OnClickListener M = new View.OnClickListener() {
-        Uri outputFileUri;
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent();
-            intent.setClass(Main.this,MapResultActivity.class);
-            startActivityForResult(intent,3);
-        }
-
-    };
 
     @Override
-    protected void onActivityResult(int requestCode,int resultCode,Intent data)
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data)
     {
         progressDialog = new ProgressDialog(Main.this);
         progressDialog.setMessage("Uploading, please wait...");
@@ -130,17 +130,23 @@ public class Main extends AppCompatActivity {
 
         if (data == null) return;
 
-        if(requestCode==GET_FROM_CAMERA&&data!=null)
-        bitmap = (Bitmap) data.getExtras().get("data");
+        if(requestCode==GET_FROM_CAMERA&& resultCode == RESULT_OK&&data!=null) {
+            bitmap = (Bitmap) data.getExtras().get("data");
+            System.out.println(123);
+        }
 
-
-        else if (requestCode == GET_FROM_PICTURE/* && resultCode == RESULT_OK && data != null && data.getData() != null*/)
+        else if (requestCode == GET_FROM_PICTURE && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
+
             Uri filePath = data.getData();
+            System.out.println(filePath);
 
             try {
                 //getting image from gallery
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+
+//                Setting image to ImageView
+//               testIV.setImageBitmap(bitmap);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -189,25 +195,30 @@ public class Main extends AppCompatActivity {
                             public void onResponse(String response) {
 //                                          System.out.println(response.substring(response.indexOf("title",response.indexOf("items"))+8,response.indexOf("htmlTitle")-6));
 //                                          System.out.println(response.substring(response.indexOf("link",response.indexOf("items"))+8,response.indexOf("displayLink")-6));
+                                            System.out.println(response);
 
                                           //抓取第一筆搜尋
                                           searchResult1=response.substring(response.indexOf("title",response.indexOf("items"))+8,response.indexOf("htmlTitle")-6);
                                           searchLink1=response.substring(response.indexOf("link",response.indexOf("items"))+8,response.indexOf("displayLink")-7);
-                                          searchSnippet1=response.substring(response.indexOf("snippet",response.indexOf("items"))+8,response.indexOf("htmlSnippet")-7);
+                                          searchSnippet1=response.substring(response.indexOf("snippet",response.indexOf("items"))+9,response.indexOf("htmlSnippet")-7);
 
+                                         System.out.println(searchResult1);
+                                         System.out.println(searchLink1);
+                                         System.out.println(searchSnippet1);
                                           nextResult=response.indexOf("title",response.indexOf("items"))+8;
                                           //抓取第二筆搜尋
-                                            searchResult2=response.substring(response.indexOf("title",response.indexOf("items"))+8,response.indexOf("htmlTitle")-6);
-                                            searchLink2=response.substring(response.indexOf("link",response.indexOf("items"))+8,response.indexOf("displayLink")-7);
-                                            searchSnippet2=response.substring(response.indexOf("snippet",response.indexOf("items"))+8,response.indexOf("htmlSnippet")-7);
-
-
+                                           searchResult2=response.substring(response.indexOf("title",response.indexOf("title",response.indexOf("items"))+8)+8,response.indexOf("htmlTitle",response.indexOf("htmlTitle",response.indexOf("items"))+8)-6);
+                                            searchLink2=response.substring(response.indexOf("link",response.indexOf("link",response.indexOf("items"))+8)+8,response.indexOf("displayLink",response.indexOf("displayLink",response.indexOf("items"))+8)-7);
+                                            searchSnippet2=response.substring(response.indexOf("snippet",response.indexOf("snippet",response.indexOf("items"))+8)+9,response.indexOf("htmlSnippet",response.indexOf("htmlSnippet",response.indexOf("items"))+8)-7);
+                                            System.out.println(searchResult2);
+                                            System.out.println(searchLink2);
+                                            System.out.println(searchSnippet2);
+//                                            System.out.println(response.indexOf("htmlTitle",response.indexOf("htmlTitle",response.indexOf("items"))+8)-6);
 
                                           searchString=response;
 
 
-                                if(Rcode == GET_FROM_CAMERA)
-                                {
+
                                     intentforresult.putExtra("search",searchString);
                                     intentforresult.putExtra("search1",searchResult1);
                                     intentforresult.putExtra("searchL1",searchLink1);
@@ -218,7 +229,7 @@ public class Main extends AppCompatActivity {
                                     intentforresult.putExtra("json",Json);
                                     intentforresult.setClass(Main.this,TextResultActivity.class);
                                     startActivityForResult(intentforresult,101);
-                                }
+
                             }
                         }, new Response.ErrorListener() {
                             @Override
@@ -227,6 +238,7 @@ public class Main extends AppCompatActivity {
                             }
                         });   //search 部分結束
                          RequestQueue sQueue = Volley.newRequestQueue(Main.this);
+                         requestforsearch.setRetryPolicy(new DefaultRetryPolicy(10000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                          sQueue.add(requestforsearch);
 
                         }
@@ -237,6 +249,7 @@ public class Main extends AppCompatActivity {
                         }
                     }); //translation 部分結束
                 RequestQueue sQueue = Volley.newRequestQueue(Main.this);
+                requestfortranslation.setRetryPolicy(new DefaultRetryPolicy(10000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 sQueue.add(requestfortranslation);
 
 
@@ -257,8 +270,24 @@ public class Main extends AppCompatActivity {
         };
 
         RequestQueue rQueue = Volley.newRequestQueue(Main.this);
-
+        requestforvision.setRetryPolicy(new DefaultRetryPolicy(10000,DefaultRetryPolicy.DEFAULT_MAX_RETRIES,DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         rQueue.add(requestforvision) ;
 
+    }
+    private Bitmap getImageBitmap(String url) {
+        Bitmap bm = null;
+        try {
+            URL aURL = new URL(url);
+            URLConnection conn = aURL.openConnection();
+            conn.connect();
+            InputStream is = conn.getInputStream();
+            BufferedInputStream bis = new BufferedInputStream(is);
+            bm = BitmapFactory.decodeStream(bis);
+            bis.close();
+            is.close();
+        } catch (IOException e) {
+
+        }
+        return bm;
     }
 }

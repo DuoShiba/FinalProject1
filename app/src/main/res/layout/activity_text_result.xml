@@ -16,19 +16,19 @@
         <TextView
             android:id="@+id/active"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:singleLine="false"
+            android:layout_height="186dp"
+            android:ellipsize="end"
             android:fadeScrollbars="false"
             android:maxEms="30"
             android:maxLines="10"
-            android:ellipsize="end"
+            android:scrollbars="vertical"
+            android:singleLine="false"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="2dp" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="match_parent"
+            android:layout_width="380dp"
             android:layout_height="30dp"
             android:text="More"
             android:textSize="8dp"/>
@@ -60,7 +60,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:text="Taipei Nangang Exhibition Center"
+                        android:background="#FFFFFF"
                         android:id="@+id/title1"/>
+
+                    <ImageView
+                        android:id="@+id/image1"
+                        android:layout_width="380dp"
+                        android:layout_height="300dp"
+                        app:srcCompat="@drawable/taipei" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -69,11 +76,19 @@
                         android:maxLines="5"
                         android:id="@+id/snippet1"/>
 
-                    <ImageButton
-                        android:id="@+id/imageButton"
+                    <Button
+                        android:id="@+id/button1"
                         android:layout_width="380dp"
-                        android:layout_height="300dp"
-                        app:srcCompat="@drawable/shibainu1" />
+                        android:layout_height="30dp"
+                        android:text="網站連結"
+                        android:background="#FFFFBB"
+                        android:textColor="#0000FF"/>
+                    <!--
+                                        <ImageButton
+                                            android:id="@+id/imageButton"
+                                            android:layout_width="380dp"
+                                            android:layout_height="300dp"
+                                            app:srcCompat="@drawable/shibainu1" /> -->
 
                 </LinearLayout>
 
@@ -90,7 +105,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:text="台北世貿中心"
+                        android:background="#FFFFFF"
                         android:id="@+id/title2"/>
+                    <ImageView
+                        android:id="@+id/image2"
+                        android:layout_width="380dp"
+                        android:layout_height="300dp"
+                        app:srcCompat="@drawable/taipei" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -98,12 +119,19 @@
                         android:text="Taipei Nangang Exhibition Center"
                         android:maxLines="5"
                         android:id="@+id/snippet2"/>
-
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="380dp"
+                        android:layout_height="30dp"
+                        android:text="網站連結"
+                        android:background="#FFFFBB"
+                        android:textColor="#0000FF"/>
+<!--
                     <ImageButton
                         android:id="@+id/imageButton2"
                         android:layout_width="380dp"
                         android:layout_height="300dp"
-                        app:srcCompat="@drawable/shibainu2" />
+                        app:srcCompat="@drawable/shibainu2" /> -->
                 </LinearLayout>
 
             </TableRow>

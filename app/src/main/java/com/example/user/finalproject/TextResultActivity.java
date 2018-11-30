@@ -41,6 +41,7 @@ public class TextResultActivity extends AppCompatActivity {
     String values=new String();
     String t1=new String(),t2=new String();
     String l1=new String(),l2=new String();
+    String Im1=new String(),Im2=new String();
     Intent send=new Intent();
     TextView tv;
     TextView ti1,ti2;
@@ -59,12 +60,14 @@ public class TextResultActivity extends AppCompatActivity {
         startActivityForResult(Iintent,2);*/
 
         send=getIntent();
-        values=send.getStringExtra("search");
+        values=send.getStringExtra("json");
         send.putExtra("showtext",values);
         l1=send.getStringExtra("searchL1");
         l2=send.getStringExtra("searchL2");
-        System.out.println(1233);
-        System.out.println(send.getStringExtra("search1")+send.getStringExtra("searchS1"));
+        Im1=send.getStringExtra("searchI1");
+        Im2=send.getStringExtra("searchI2");
+
+//        System.out.println(send.getStringExtra("search1")+send.getStringExtra("searchS1"));
 
 
         adb=new AlertDialog.Builder(this);
@@ -72,8 +75,8 @@ public class TextResultActivity extends AppCompatActivity {
         alltext =(Button)findViewById(R.id.button);
         L1=(Button)findViewById(R.id.button1);
         L2=(Button)findViewById(R.id.button2);
-//        Img1=(ImageView)findViewById(R.id.imageButton);
-//        Img2=(ImageView)findViewById(R.id.imageButton2);
+        Img1=(ImageView)findViewById(R.id.image1);
+        Img2=(ImageView)findViewById(R.id.image2);
 //        Original=(ImageView)findViewById(R.id.imageView);
         tv=(TextView)findViewById(R.id.active);
 
@@ -84,17 +87,18 @@ public class TextResultActivity extends AppCompatActivity {
 //        si1=(Button) findViewById(R.id.link1);
 //        si2=(TextView)findViewById(R.id.snippet2);
 
-//        Img1.setOnClickListener(GoOUT);
-//        Img2.setOnClickListener(I1);
+
         L1.setOnClickListener(GoOUT);
         L2.setOnClickListener(GoOUT2);
         alltext.setOnClickListener(S);
 //        Refresh.setOnClickListener(I2);
-        tv.setText(values);
+        tv.setText(send.getStringExtra("json"));
         ti1.setText(send.getStringExtra("search1"));
         s1.setText(send.getStringExtra("searchS1"));
         ti2.setText(send.getStringExtra("search2"));
         s2.setText(send.getStringExtra("searchS2"));
+        Picasso.with(this).load(Im1).into(Img1);
+        Picasso.with(this).load(Im2).into(Img2);
        /* si1.setText("網站連結1");
         si1.setOnClickListener(GoOUT);*/
 //        tv.setText("dsadasdads");

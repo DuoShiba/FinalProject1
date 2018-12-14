@@ -1,7 +1,9 @@
 package com.example.user.finalproject;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Path;
+import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,20 +48,35 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 public class MapResultActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private String NowLoc = "Now Location";
-    private String TarLoc = "Target Location";
-    private double  Nowlong=24.180112, Nowlat=120.648317;
-    private double  Tarlong=24.177364, Tarlat=120.645998;
+    private String NowLoc = "現在位置";
+    private String TarLoc = "目的地";
+    private double  Nowlong=34.989168, Nowlat=135.759365;
+    private double  Tarlong=35.039330, Tarlat=135.729249;
     private PolylineOptions polylineOptions = new PolylineOptions();
+    private String routes;
+    Intent get=new Intent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        get=getIntent();
+        routes=get.getStringExtra("route");
+//        System.out.println(routes);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_result);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        ParserTask parserTask = new ParserTask();
+        parserTask.execute(routes);
         mapFragment.getMapAsync(this);
 
        /* if(checkmapversion()==true)
@@ -102,8 +119,167 @@ public class MapResultActivity extends FragmentActivity implements OnMapReadyCal
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));                              //標示顏色
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,15));
-        Polyline line = mMap.addPolyline(new PolylineOptions()                              //畫線
+        /*Polyline line = mMap.addPolyline(new PolylineOptions()                              //畫線
                 .add(sydney,sydney2)                                                        //標示一到標示二
                 .width(10)                                                                  //線條寬度
-                .color(Color.BLACK));                                                     //線條顏色
-    }}
+                .color(Color.BLACK));                                                     //線條顏色*/
+    }
+
+
+
+
+    private class ParserTask extends
+            AsyncTask<String, Integer, List<List<HashMap<String, String>>>> {
+
+        // Parsing the data in non-ui thread
+        @Override
+        protected List<List<HashMap<String, String>>> doInBackground(
+                String... jsonData) {
+
+            JSONObject jObject;
+            List<List<HashMap<String, String>>> routes = null;
+
+            try {
+                jObject = new JSONObject(jsonData[0]);
+                DirectionsJSONParser parser = new DirectionsJSONParser();
+
+                // Starts parsing data
+                routes = parser.parse(jObject);
+                System.out.println("do in background:" + routes);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return routes;
+        }
+
+        // Executes in UI thread, after the parsing process
+        @Override
+        protected void onPostExecute(List<List<HashMap<String, String>>> result) {
+            ArrayList<LatLng> points = null;
+            PolylineOptions lineOptions = null;
+            MarkerOptions markerOptions = new MarkerOptions();
+
+            // Traversing through all the routes
+            for (int i = 0; i < result.size(); i++) {
+                points = new ArrayList<LatLng>();
+                lineOptions = new PolylineOptions();
+
+                // Fetching i-th route
+                List<HashMap<String, String>> path = result.get(i);
+
+                // Fetching all the points in i-th route
+                for (int j = 0; j < path.size(); j++) {
+                    HashMap<String, String> point = path.get(j);
+
+                    double lat = Double.parseDouble(point.get("lat"));
+                    double lng = Double.parseDouble(point.get("lng"));
+                    LatLng position = new LatLng(lat, lng);
+
+                    points.add(position);
+                }
+
+                // Adding all the points in the route to LineOptions
+                lineOptions.addAll(points);
+                lineOptions.width(3);
+
+                // Changing the color polyline according to the mode
+                lineOptions.color(Color.BLUE);
+            }
+
+            // Drawing polyline in the Google Map for the i-th route
+            mMap.addPolyline(lineOptions);
+        }
+        public class DirectionsJSONParser {
+            /**
+             * Receives a JSONObject and returns a list of lists containing latitude and
+             * longitude
+             */
+            public List<List<HashMap<String, String>>> parse(JSONObject jObject) {
+
+                List<List<HashMap<String, String>>> routes = new ArrayList<List<HashMap<String, String>>>();
+                JSONArray jRoutes = null;
+                JSONArray jLegs = null;
+                JSONArray jSteps = null;
+
+                try {
+
+                    jRoutes = jObject.getJSONArray("routes");
+
+                    /** Traversing all routes */
+                    for (int i = 0; i < jRoutes.length(); i++) {
+                        jLegs = ((JSONObject) jRoutes.get(i)).getJSONArray("legs");
+                        List path = new ArrayList<HashMap<String, String>>();
+
+                        /** Traversing all legs */
+                        for (int j = 0; j < jLegs.length(); j++) {
+                            jSteps = ((JSONObject) jLegs.get(j)).getJSONArray("steps");
+
+                            /** Traversing all steps */
+                            for (int k = 0; k < jSteps.length(); k++) {
+                                String polyline = "";
+                                polyline = (String) ((JSONObject) ((JSONObject) jSteps
+                                        .get(k)).get("polyline")).get("points");
+                                List<LatLng> list = decodePoly(polyline);
+
+                                /** Traversing all points */
+                                for (int l = 0; l < list.size(); l++) {
+                                    HashMap<String, String> hm = new HashMap<String, String>();
+                                    hm.put("lat",
+                                            Double.toString(((LatLng) list.get(l)).latitude));
+                                    hm.put("lng",
+                                            Double.toString(((LatLng) list.get(l)).longitude));
+                                    path.add(hm);
+                                }
+                            }
+                            routes.add(path);
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                }
+                return routes;
+            }
+
+            /**
+             * Method to decode polyline points Courtesy :
+             * jeffreysambells.com/2010/05/27
+             * /decoding-polylines-from-google-maps-direction-api-with-java
+             * */
+            private List<LatLng> decodePoly(String encoded) {
+
+                List<LatLng> poly = new ArrayList<LatLng>();
+                int index = 0, len = encoded.length();
+                int lat = 0, lng = 0;
+
+                while (index < len) {
+                    int b, shift = 0, result = 0;
+                    do {
+                        b = encoded.charAt(index++) - 63;
+                        result |= (b & 0x1f) << shift;
+                        shift += 5;
+                    } while (b >= 0x20);
+                    int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+                    lat += dlat;
+
+                    shift = 0;
+                    result = 0;
+                    do {
+                        b = encoded.charAt(index++) - 63;
+                        result |= (b & 0x1f) << shift;
+                        shift += 5;
+                    } while (b >= 0x20);
+                    int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+                    lng += dlng;
+
+                    LatLng p = new LatLng((((double) lat / 1E5)),
+                            (((double) lng / 1E5)));
+                    poly.add(p);
+                }
+                return poly;
+            }
+        }
+
+    }
+
+}

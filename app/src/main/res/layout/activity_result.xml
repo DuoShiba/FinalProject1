@@ -6,16 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ResultActivity">
 
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+       <!-- <fragment
+            android:id="@+id/maps"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-<!--
+            android:layout_height="300dp"
+            tools:context=".ResultActivity" />-->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <!--
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
@@ -28,63 +39,70 @@
                 android:layout_width="380dp"
                 android:layout_height="300dp"/>-->
 
-            <TextView
-                android:textColor="#0000FF"
-                android:id="@+id/Rtitle1"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="Taipei Nangang Exhibition Center" />
+                <!--   <com.google.android.gms.maps.MapView
+              android:id="@+id/mapView"
+              android:layout_width="match_parent"
+              android:layout_height="300dp" />-->
 
-            <ImageView
-                android:id="@+id/imageButton1"
-                android:layout_width="380dp"
-                android:layout_height="300dp"
-                app:srcCompat="@drawable/national" />
+                <TextView
+                    android:id="@+id/Rtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="Taipei Nangang Exhibition Center"
+                    android:textColor="#0000FF" />
 
-            <TextView
-                android:id="@+id/Rsnippet1"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:text="台北南港展覽館1館、2館. Taipei Nangang Exhibition Center, Hall 1  2. a.k.a TWTC Nangang Exhibition Hall. 展覽活動一覽 · 交通資訊 · 租借場地 · 參觀資訊." />
+                <ImageView
+                    android:id="@+id/imageButton1"
+                    android:layout_width="380dp"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/national" />
 
-            <TextView
-                android:textColor="#0000FF"
-                android:id="@+id/Rtitle2"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="台北世貿中心" />
+                <TextView
+                    android:id="@+id/Rsnippet1"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:text="台北南港展覽館1館、2館. Taipei Nangang Exhibition Center, Hall 1  2. a.k.a TWTC Nangang Exhibition Hall. 展覽活動一覽 · 交通資訊 · 租借場地 · 參觀資訊." />
 
-            <ImageView
-                android:id="@+id/imageButton2"
-                android:layout_width="380dp"
-                android:layout_height="300dp"
-                app:srcCompat="@drawable/taipei" />
+                <TextView
+                    android:id="@+id/Rtitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="台北世貿中心"
+                    android:textColor="#0000FF" />
 
-            <TextView
-                android:id="@+id/Rsnippet2"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:text="2. 外貿協會「ITI ENGLISH」英文線上學習頻道將於5月上線，歡迎查看「最新消息」訂閱分享！ 3. 台北世貿中心展覽大樓內，自今年起提供民眾免費閱讀好書及報章雜誌 ..." />
-            <TextView
-                android:textColor="#0000FF"
-                android:id="@+id/Rtitle3"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="台北世貿中心" />
+                <ImageView
+                    android:id="@+id/imageButton2"
+                    android:layout_width="380dp"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/taipei" />
 
-            <ImageView
-                android:id="@+id/imageButton3"
-                android:layout_width="380dp"
-                android:layout_height="300dp"
-                app:srcCompat="@drawable/taipei" />
+                <TextView
+                    android:id="@+id/Rsnippet2"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:text="2. 外貿協會「ITI ENGLISH」英文線上學習頻道將於5月上線，歡迎查看「最新消息」訂閱分享！ 3. 台北世貿中心展覽大樓內，自今年起提供民眾免費閱讀好書及報章雜誌 ..." />
 
-            <TextView
-                android:id="@+id/Rsnippet3"
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:text="33"/>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/Rtitle3"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="台北世貿中心"
+                    android:textColor="#0000FF" />
 
-    </ScrollView>
+                <ImageView
+                    android:id="@+id/imageButton3"
+                    android:layout_width="380dp"
+                    android:layout_height="300dp"
+                    app:srcCompat="@drawable/taipei" />
+
+                <TextView
+                    android:id="@+id/Rsnippet3"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:text="33" />
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

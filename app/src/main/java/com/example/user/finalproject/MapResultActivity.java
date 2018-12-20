@@ -70,7 +70,9 @@ public class MapResultActivity extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         get=getIntent();
         routes=get.getStringExtra("route");
-//        System.out.println(routes);
+        this.Tarlong=Double.parseDouble(get.getStringExtra("LAT"));
+        this.Tarlat=Double.parseDouble(get.getStringExtra("LNG"));
+        System.out.println(routes);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_result);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -79,28 +81,8 @@ public class MapResultActivity extends FragmentActivity implements OnMapReadyCal
         parserTask.execute(routes);
         mapFragment.getMapAsync(this);
 
-       /* if(checkmapversion()==true)
-        {
-            initialMaps();
-        }*/
+
     }
-        /*
-            private  void initialMaps()
-            {
-            }
-            private boolean checkmapversion(){
-                int avai = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MapResultActivity.this);
-                if(avai == ConnectionResult.SUCCESS)
-                {
-                    Log.i("google map","version right");
-                    return true;
-                }
-                else
-                {
-                    Toast.makeText(this,"version not the same",Toast.LENGTH_LONG).show();
-                    return false;
-                }
-            }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
